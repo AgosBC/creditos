@@ -4,7 +4,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
 import java.util.Date;
 
-// import ar.com.ada.abmcliente.excepciones.*;
+import ar.com.ada.creditos.excepciones.*;
 
 @Entity
 @Table(name = "cliente")
