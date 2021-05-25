@@ -37,7 +37,7 @@ public class PrestamoManager {
 
     // cargar un prestamo a un cliente existente 
     // opcion listar prestamos 
-    // en create modificar (Prestamo Cliente)
+    
     public void create(Prestamo prestamo) {
 
         Session session = sessionFactory.openSession(); 
@@ -95,48 +95,21 @@ public class PrestamoManager {
         session.close();
     }
 
-    /**
-     * Este metodo en la vida real no debe existir ya qeu puede haber miles de
-     * usuarios
-     * 
-     * @return
-     */
-    public List<Prestamo> buscarTodos() { // uitar mas adelante 
+    
+
+    public List<Prestamo> buscarPrestamos() { // uitar mas adelante 
 
         Session session = sessionFactory.openSession();
 
         /// NUNCA HARCODEAR SQLs nativos en la aplicacion.
         // ESTO es solo para nivel educativo
-        Query query = session.createNativeQuery("SELECT * FROM cliente", Cliente.class);
+        Query query = session.createNativeQuery("SELECT * FROM prestamo", Prestamo.class);
         //query = session.createQuery("From Obse")
         List<Prestamo> todos = query.getResultList();
 
         return todos;
 
     }
-
-    /**
-     * Busca una lista de clientes por el nombre completo Esta armado para que se
-     * pueda generar un SQL Injection y mostrar commo NO debe programarse.
-     * 
-     * @param nombre
-     * @return
-     
-    public List<Cliente> buscarPor(String nombre) { //no hace falta
-
-        Session session = sessionFactory.openSession();
-
-        // SQL Injection vulnerability exposed.
-        // Deberia traer solo aquella del nombre y con esto demostrarmos que trae todas
-        // si pasamos
-        // como nombre: "' or '1'='1"
-        Query query = session.createNativeQuery("SELECT * FROM cliente where nombre = '" + nombre + "'", Cliente.class);
-
-        List<Cliente> clientes = query.getResultList();
-
-        return clientes;
-
-    }**/
 
     
 }

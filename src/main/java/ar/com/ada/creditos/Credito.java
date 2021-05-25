@@ -62,6 +62,9 @@ public class Credito {
                     case 6:
                         agregarPrestamoClienteId();
                         break;
+                    
+                    case 7:
+                         listarPrestamos();
 
                     default:
                         System.out.println("La opcion no es correcta.");
@@ -301,15 +304,33 @@ public class Credito {
 
     }
 
+    public void mostrarPrestamos(Prestamo p){
+    
+
+        System.out.println("Cliente: " + p.getCliente().getNombre());
+        System.out.println("ID de prestamo es: " + p.getPrestamoId() + " Importe del prestamo: $" + p.getImporte() + " Cuotas a pagar: " + p.getCuotas());
+        
+    }
+   
+    public void listarPrestamos(){
+
+        List<Prestamo> todos = ABMPrestamo.buscarPrestamos();
+        for (Prestamo prestamo: todos){
+            mostrarPrestamos(prestamo);
+
+        }
+    }
+
     public static void printOpciones() {
         System.out.println("=======================================");
         System.out.println("");
         System.out.println("1. Para agregar un cliente.");
         System.out.println("2. Para eliminar un cliente.");
         System.out.println("3. Para modificar un cliente.");
-        System.out.println("4. Para ver el listado.");
+        System.out.println("4. Para ver el listado de clientes.");
         System.out.println("5. Buscar un cliente por nombre especifico(SQL Injection)).");
         System.out.println("6. Otorgar un prestamo (cliente Id).");
+        System.out.println("7. Ver lista de prestamos");
         System.out.println("0. Para terminar.");
         System.out.println("");
         System.out.println("=======================================");
