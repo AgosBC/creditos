@@ -38,7 +38,7 @@ public class Cliente {
     // cada cliente tiene un lista de prestamos esta tiene una relacion
     //one to many (un cliente muchos prestamos)
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Prestamo> prestamos = new ArrayList<>();
 
     
@@ -53,6 +53,7 @@ public class Cliente {
     }
     public void setClienteId(int clienteId){
         this.clienteId = clienteId;
+        // this.cliente.agregarPrestamo(this) //relacion bidireccional. usar si qquiero crear el metodo agregarPrestamo para q agrege un pretamo a cada cliente nuevo
     }
 
     public String getNombre() {
