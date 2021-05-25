@@ -2,7 +2,8 @@ package ar.com.ada.creditos.entities;
 
 import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
-import java.util.Date;
+import java.util.*;
+
 
 import ar.com.ada.creditos.excepciones.*;
 
@@ -21,6 +22,7 @@ public class Cliente {
 
     private String direccion;
 
+    
     @Column(name = "direccion_alternativa")
     private String direccionAlt;
 
@@ -32,6 +34,14 @@ public class Cliente {
         this.nombre = nombre;
 
     }
+
+    // cada cliente tiene un lista de prestamos esta tiene una relacion
+    //one to many (un cliente muchos prestamos)
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Prestamo> prestamos = new ArrayList<>();
+
+    
 
     // getters y setters 
 
@@ -78,6 +88,14 @@ public class Cliente {
     }
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
     }
     
 }

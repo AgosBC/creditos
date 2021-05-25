@@ -7,7 +7,7 @@ import ar.com.ada.creditos.entities.*;
 
 import java.util.Date;
 import java.util.Scanner;
-
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -55,6 +55,10 @@ public class Credito {
 
                     case 5:
                         listarPorNombre();
+                        break;
+
+                    case 6:
+                        agregarPrestamoClienteId();
                         break;
 
                     default:
@@ -261,6 +265,30 @@ public class Credito {
         System.out.println(" Fecha Nacimiento: " + fechaNacimientoStr); // separado del print anterior? revisar
     }
 
+    public void agregarPrestamoClienteId(){
+
+        System.out.println("Ingrese Id del cliente");
+        int nCliente = Teclado.nextInt();
+        Cliente clienteId = ABMCliente.read(nCliente);
+
+        System.out.println("Ingrese monto del prestamo");
+        Prestamo prestamo1 = new Prestamo();
+        BigDecimal importe = Teclado.nextBigDecimal();
+
+        prestamo1.setImporte(importe);
+        prestamo1.setCliente(clienteId);
+
+        System.out.println("ingrese cantidad de cuotas de cancelacion");
+        int cuota = Teclado.nextInt();
+        prestamo1.setCuotas(cuota);
+
+        //prestamo1.setFechaAlta(new Date());
+        //prestamo1.setFechaPrestamo(new Date());      
+
+        
+
+    }
+
     public static void printOpciones() {
         System.out.println("=======================================");
         System.out.println("");
@@ -269,6 +297,7 @@ public class Credito {
         System.out.println("3. Para modificar un cliente.");
         System.out.println("4. Para ver el listado.");
         System.out.println("5. Buscar un cliente por nombre especifico(SQL Injection)).");
+        System.out.println("6. Otorgar un prestamo (cliente Id).");
         System.out.println("0. Para terminar.");
         System.out.println("");
         System.out.println("=======================================");

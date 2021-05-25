@@ -1,5 +1,7 @@
 package ar.com.ada.creditos.entities;
 import javax.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import org.hibernate.annotations.NaturalId;
 
@@ -14,7 +16,7 @@ public class Prestamo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int prestamoId;
 
-    private double importe;
+    private BigDecimal importe;
     private int cuotas;
 
     @Column(name = "fecha_prestamo")
@@ -22,8 +24,24 @@ public class Prestamo {
     private Date fechaPrestamo;
 
     @Column(name = "fecha_alta")
-    private Date fechaAlta; // este va? -- en la BD es por defoult (no hago Get/Set por el momento)
+    private Date fechaAlta; 
 
+    @ManyToOne // este tiene una relacion many to one (muchos prestamos a un cliente) 
+    @JoinColumn(name = "cliente_id", referencedColumnName = "cliente_id") // es un join columns va donde va la FK
+    Cliente cliente; 
+
+    public Date getFechaAlta() {
+        return fechaAlta;
+    }
+    public void setFechaAlta(Date fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     public int getPrestamoId() {
         return prestamoId;
     }
@@ -31,10 +49,10 @@ public class Prestamo {
         this.prestamoId = prestamoId;
     }
 
-    public double getImporte() {
+    public BigDecimal getImporte() {
         return importe;
     }
-    public void setImporte(double importe) {
+    public void setImporte(BigDecimal importe) {
         this.importe = importe;
     }
 
