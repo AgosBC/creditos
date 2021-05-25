@@ -38,7 +38,8 @@ public class Cliente {
     // cada cliente tiene un lista de prestamos esta tiene una relacion
     //one to many (un cliente muchos prestamos)
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL/*, fetch = FetchType.EAGER*/) // si arego lo agregar prestamo de set cliente, tambien deberia modificar el metodo 
+                                                                                                // agregarPrestamoClienteId 
     private List<Prestamo> prestamos = new ArrayList<>();
 
     
