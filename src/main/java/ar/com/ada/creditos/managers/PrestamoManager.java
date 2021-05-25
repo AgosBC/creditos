@@ -50,7 +50,7 @@ public class PrestamoManager {
         session.close(); 
     }
 
-    /*public Prestamo read(int prestamoId) { // usar mejor la idea de abajo, para nmas adelante
+    public Prestamo read(int prestamoId) { 
 
         Session session = sessionFactory.openSession();
 
@@ -59,10 +59,11 @@ public class PrestamoManager {
         session.close();
 
         return prestamo;
-    }*/
+    }
 
     
     /*public Cliente readByCliente(int dni) { que prermita buscar los prestamos que tiene un cliente deberia agregar en cliente o usar el de Id
+        //estaria aca, en cliente manager o en creditos?  - CREDITOS - RECORDATORIO, CAMBIAR
         Session session = sessionFactory.openSession();
 
         Cliente cliente = session.byNaturalId(Cliente.class).using("dni", dni).load();

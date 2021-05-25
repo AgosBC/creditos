@@ -17,12 +17,14 @@ public class Credito {
     public static Scanner Teclado = new Scanner(System.in);
 
     protected ClienteManager ABMCliente = new ClienteManager(); // prestamo cliente? buscar un nombre de variable mas claro
+    protected PrestamoManager ABMPrestamo = new PrestamoManager();
 
     public void iniciar() throws Exception {
 
         try {
 
            ABMCliente.setup(); // en cliente manager
+           ABMPrestamo.setup();
 
            printOpciones();
 
@@ -269,21 +271,31 @@ public class Credito {
 
         System.out.println("Ingrese Id del cliente");
         int nCliente = Teclado.nextInt();
+        Teclado.nextLine();
         Cliente clienteId = ABMCliente.read(nCliente);
+        if (clienteId == null){
+            System.out.println("cliente no encontrado");
+            return;
+        }
 
         System.out.println("Ingrese monto del prestamo");
         Prestamo prestamo1 = new Prestamo();
         BigDecimal importe = Teclado.nextBigDecimal();
+        Teclado.nextLine();
 
         prestamo1.setImporte(importe);
         prestamo1.setCliente(clienteId);
 
         System.out.println("ingrese cantidad de cuotas de cancelacion");
         int cuota = Teclado.nextInt();
+        Teclado.nextLine();
         prestamo1.setCuotas(cuota);
 
-        //prestamo1.setFechaAlta(new Date());
-        //prestamo1.setFechaPrestamo(new Date());      
+        prestamo1.setFechaAlta(new Date());
+        prestamo1.setFechaPrestamo(new Date()); 
+       
+        
+        ABMPrestamo.create(prestamo1);
 
         
 
