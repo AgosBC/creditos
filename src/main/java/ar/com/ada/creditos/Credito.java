@@ -2,8 +2,13 @@ package ar.com.ada.creditos;
 
 import ar.com.ada.creditos.managers.*;
 import java.util.Scanner;
+
+import org.hibernate.engine.spi.Managed;
+import org.hibernate.engine.spi.ManagedEntity;
+
 import ar.com.ada.creditos.excepciones.*;
 import ar.com.ada.creditos.entities.*;
+import ar.com.ada.creditos.entities.Prestamo.EstadoPrestamoEnum;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -114,7 +119,17 @@ public class Credito {
         fecha = dateformatArgentina.parse(Teclado.nextLine());
         cliente.setFechaNacimiento(fecha);
 
+        Prestamo prestamo = new Prestamo();
+
+        prestamo.setImporte(new BigDecimal(10000));
+        prestamo.setCuotas(5);
+        prestamo.setFechaPrestamo(new Date());
+        prestamo.setFechaAlta(new Date());
+        prestamo.setEstadoId(EstadoPrestamoEnum.APROBADO);
+        prestamo.setCliente(cliente);
         
+
+                
 
         ABMCliente.create(cliente);
 
@@ -311,6 +326,8 @@ public class Credito {
         System.out.println("ID de prestamo es: " + p.getPrestamoId() + " Importe del prestamo: $" + p.getImporte() + " Cuotas a pagar: " + p.getCuotas());
         
     }
+
+    
    
     public void listarPrestamos(){
 

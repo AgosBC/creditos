@@ -99,5 +99,7 @@ public class Cliente {
     public void setPrestamos(List<Prestamo> prestamos) {
         this.prestamos = prestamos;
     }
-    
+    public void agregarPrestamo(Prestamo prestamo) {
+        this.prestamos.add(prestamo);
+    }
 }
