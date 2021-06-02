@@ -25,6 +25,46 @@ public class Cancelacion {
     @JoinColumn(name = "prestamo_id", referencedColumnName = "prestamo_id")
     Prestamo prestamo;
 
+    public int getCancelacionId() {
+        return cancelacionId;
+    }
+
+    public void setCancelacionId(int cancelacionId) {
+        this.cancelacionId = cancelacionId;
+    }
+
+    public Date getFecahaCancelacion() {
+        return fecahaCancelacion;
+    }
+
+    public void setFecahaCancelacion(Date fecahaCancelacion) {
+        this.fecahaCancelacion = fecahaCancelacion;
+    }
+
+    public BigDecimal getImporte() {
+        return importe;
+    }
+
+    public void setImporte(BigDecimal importe) {
+        this.importe = importe;
+    }
+
+    public int getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(int cuota) {
+        this.cuota = cuota;
+    }
+
+    public Prestamo getPrestamo() {
+        return prestamo;
+    }
+
+    public void setPrestamo(Prestamo prestamo) {
+        this.prestamo = prestamo;
+    }
+
     
 
     

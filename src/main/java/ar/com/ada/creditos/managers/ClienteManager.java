@@ -130,9 +130,49 @@ public class ClienteManager {
         // como nombre: "' or '1'='1"
         Query query = session.createNativeQuery("SELECT * FROM cliente where nombre = '" + nombre + "'", Cliente.class);
 
-        List<Cliente> clientes = query.getResultList();
+        List<Cliente> clientesHackeable = query.getResultList(); // SQL INJECTION
 
-        return clientes;
+        // version corregida usando parametros SQL
+
+        Query queryConParametrosSql = session.createNativeQuery("SELECT * FROM cliente where nombre = ?", // se pasa ? como parametro
+                Cliente.class);
+        queryConParametrosSql.setParameter(1, nombre);
+
+        List<Cliente> clientesDeQueryConParametrosSQL = queryConParametrosSql.getResultList();
+
+        //version usando JPQL, pensamos en objetos y no en tablas. mas complejo. usado en select sencillos
+
+        Query queryConJPQL = session.createQuery("SELECT c FROM Cliente c where c.nombre = :nombreFiltro", //usan aleas y Cliente (clase en java, no lista en mysql)
+                Cliente.class);
+        queryConJPQL.setParameter("nombreFiltro", nombre);
+
+        List<Cliente> clientesDeJPQL = queryConJPQL.getResultList();
+
+        return clientesDeJPQL;
+
+    }
+    
+    //Cuenta cantidad de clientes
+    public int contarClienteQueryNativa(){
+        Session session = sessionFactory.openSession();
+
+        Query query = session.createNativeQuery("SELECT count(*) FROM cliente");
+
+        int resultado = ((Number)query.getSingleResult()).intValue();
+
+        return resultado;
+
+    }
+
+    //Cuenta cantidad de clientes
+    public int contarClienteJPQL(){
+        Session session = sessionFactory.openSession();
+
+        Query query = session.createQuery("SELECT count(c) FROM Cliente c");
+
+        int resultado = ((Number)query.getSingleResult()).intValue();
+
+        return resultado;
 
     }
 

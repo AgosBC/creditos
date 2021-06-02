@@ -258,6 +258,8 @@ public class Credito {
         for (Cliente c : todos) {
             mostrarCliente(c);
         }
+        int cantidadClientes = ABMCliente.contarClienteJPQL();
+        System.out.println("La cantidad de clientes totales es: "+ cantidadClientes); //agrego el contador para que no solo liste los clientes ponga tambien el total
     }
 
     public void listarPorNombre() {
@@ -336,6 +338,10 @@ public class Credito {
             mostrarPrestamos(prestamo);
 
         }
+        
+
+        //int cantidadPrestamos = ABMPrestamo.contarP
+        //System.out.println("La cantidad de clientes totales es: "+ cantidadPrestamos);
     }
 
     public static void printOpciones() {
