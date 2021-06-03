@@ -22,7 +22,7 @@ public class Cancelacion {
 
     private int cuota;
 
-    // @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "prestamo_id", referencedColumnName = "prestamo_id")
     Prestamo prestamo;
 

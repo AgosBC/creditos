@@ -70,9 +70,11 @@ public class Credito {
                     
                     case 7:
                          listarPrestamos();
+                         break;
 
                     case 8: 
                         mostrarTotalPrestamo();
+                        break;
 
                     default:
                         System.out.println("La opcion no es correcta.");
@@ -354,13 +356,18 @@ public class Credito {
 
     public void mostrarTotalPrestamo(){
 
+    
         System.out.println("ingrese ID del cliente");
         int clienteId = Teclado.nextInt();
         Teclado.nextLine();
-        ABMPrestamo.totalPrestamoCliente(clienteId);
+        BigDecimal total = ABMPrestamo.totalPrestamoCliente(clienteId);
+
+        System.out.println("El importe total de todos sus prestamos es: " + total);
+
+        
     }
 
-
+    
 
     public static void printOpciones() {
         System.out.println("=======================================");

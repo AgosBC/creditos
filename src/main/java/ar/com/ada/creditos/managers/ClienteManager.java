@@ -7,6 +7,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -128,9 +129,9 @@ public class ClienteManager {
         // Deberia traer solo aquella del nombre y con esto demostrarmos que trae todas
         // si pasamos
         // como nombre: "' or '1'='1"
-        Query query = session.createNativeQuery("SELECT * FROM cliente where nombre = '" + nombre + "'", Cliente.class);
+        //Query query = session.createNativeQuery("SELECT * FROM cliente where nombre = '" + nombre + "'", Cliente.class);
 
-        List<Cliente> clientesHackeable = query.getResultList(); // SQL INJECTION
+        //List<Cliente> clientesHackeable = query.getResultList(); // SQL INJECTION
 
         // version corregida usando parametros SQL
 
@@ -142,13 +143,13 @@ public class ClienteManager {
 
         //version usando JPQL, pensamos en objetos y no en tablas. mas complejo. usado en select sencillos
 
-        Query queryConJPQL = session.createQuery("SELECT c FROM Cliente c where c.nombre = :nombreFiltro", //usan aleas y Cliente (clase en java, no lista en mysql)
-                Cliente.class);
-        queryConJPQL.setParameter("nombreFiltro", nombre);
+        //Query queryConJPQL = session.createQuery("SELECT c FROM Cliente c where c.nombre = :nombreFiltro", //usan aleas y Cliente (clase en java, no lista en mysql)
+               // Cliente.class);
+       // queryConJPQL.setParameter("nombreFiltro", nombre);
 
-        List<Cliente> clientesDeJPQL = queryConJPQL.getResultList();
+        //List<Cliente> clientesDeJPQL = queryConJPQL.getResultList();
 
-        return clientesDeJPQL;
+        return clientesDeQueryConParametrosSQL;
 
     }
     
