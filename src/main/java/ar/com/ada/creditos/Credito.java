@@ -71,6 +71,9 @@ public class Credito {
                     case 7:
                          listarPrestamos();
 
+                    case 8: 
+                        mostrarTotalPrestamo();
+
                     default:
                         System.out.println("La opcion no es correcta.");
                         break;
@@ -344,6 +347,21 @@ public class Credito {
         //System.out.println("La cantidad de clientes totales es: "+ cantidadPrestamos);
     }
 
+    //metodo que me diga la deuda de un cliente
+    // devuelve un Bigdecimal y lo busque por cliente id
+    // dos metodos uno va a buscar los prestamos, otro a buscar las cancelaciones (sumarlas)
+    // y esas restarlas a los prestamos
+
+    public void mostrarTotalPrestamo(){
+
+        System.out.println("ingrese ID del cliente");
+        int clienteId = Teclado.nextInt();
+        Teclado.nextLine();
+        ABMPrestamo.totalPrestamoCliente(clienteId);
+    }
+
+
+
     public static void printOpciones() {
         System.out.println("=======================================");
         System.out.println("");
@@ -354,6 +372,7 @@ public class Credito {
         System.out.println("5. Buscar un cliente por nombre especifico(SQL Injection)).");
         System.out.println("6. Otorgar un prestamo (cliente Id).");
         System.out.println("7. Ver lista de prestamos");
+        System.out.println("8. Total de prestamo por cliente");
         System.out.println("0. Para terminar.");
         System.out.println("");
         System.out.println("=======================================");

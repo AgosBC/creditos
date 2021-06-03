@@ -7,6 +7,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -111,5 +112,25 @@ public class PrestamoManager {
 
     }
 
-    
+        //sumar todos los prestamos de un cliente
+
+    public BigDecimal totalPrestamoCliente (int clienteId){
+
+        Session session = sessionFactory.openSession();
+
+        Query query = session.createNativeQuery("SELECT SUM(importe) FROM prestamo WHERE cliente_id= ?", Prestamo.class);
+        query.setParameter(1, clienteId);
+
+        double total = ((Number)query.getSingleResult()).doubleValue();
+        BigDecimal totalPrestamo = new BigDecimal(total);
+
+        return totalPrestamo;
+        
+        
+
+
+
+    }
+
+       
 }

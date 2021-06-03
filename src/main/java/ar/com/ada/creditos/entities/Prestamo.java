@@ -9,7 +9,6 @@ import org.hibernate.annotations.NaturalId;
 @Table(name = "prestamo")
 public class Prestamo {
 
-    // aqui debe estar la foreign key de id cliente?
 
     @Id
     @Column(name = "prestamo_id")

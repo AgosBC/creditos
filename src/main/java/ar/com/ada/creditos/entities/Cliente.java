@@ -42,6 +42,9 @@ public class Cliente {
                                                                                                 // agregarPrestamoClienteId 
     private List<Prestamo> prestamos = new ArrayList<>();
 
+    //@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+   // private List<Cancelacion> cancelaciones = new ArrayList<>();
+
     
 
     // getters y setters 
