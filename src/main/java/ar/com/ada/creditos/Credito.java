@@ -360,9 +360,12 @@ public class Credito {
         System.out.println("ingrese ID del cliente");
         int clienteId = Teclado.nextInt();
         Teclado.nextLine();
-        BigDecimal total = ABMPrestamo.totalPrestamoCliente(clienteId);
+        Cliente cliente = ABMCliente.buscarPorId(clienteId);
 
-        System.out.println("El importe total de todos sus prestamos es: " + total);
+        BigDecimal total = ABMPrestamo.totalPrestamoCliente(cliente);
+
+
+        System.out.println("El importe total de todos sus prestamos es: " + total );
 
         
     }

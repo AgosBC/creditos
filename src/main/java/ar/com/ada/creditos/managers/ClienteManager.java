@@ -152,6 +152,21 @@ public class ClienteManager {
         return clientesDeQueryConParametrosSQL;
 
     }
+
+    public Cliente buscarPorId (int clienteId){ //2.0
+
+        Session session = sessionFactory.openSession();
+
+        Query query = session.createNativeQuery("SELECT * FROM cliente where cliente_id = ?", 
+                Cliente.class);
+        query.setParameter(1, clienteId);
+
+        Cliente clienteEncontrado = ((Cliente)query.getSingleResult());
+
+        return clienteEncontrado;
+
+
+    }
     
     //Cuenta cantidad de clientes
     public int contarClienteQueryNativa(){
