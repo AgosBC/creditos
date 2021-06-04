@@ -23,6 +23,7 @@ public class Credito {
 
     protected ClienteManager ABMCliente = new ClienteManager(); // prestamo cliente? buscar un nombre de variable mas claro
     protected PrestamoManager ABMPrestamo = new PrestamoManager();
+    protected CancelacionManager ABMCancelacion = new CancelacionManager();
 
     public void iniciar() throws Exception {
 
@@ -30,6 +31,7 @@ public class Credito {
 
            ABMCliente.setup(); // en cliente manager
            ABMPrestamo.setup();
+           ABMCancelacion.setup();
 
            printOpciones();
 
@@ -73,7 +75,7 @@ public class Credito {
                          break;
 
                     case 8: 
-                        mostrarTotalPrestamo();
+                        buscarCancelacionesPrestamo();
                         break;
 
                     default:
@@ -370,6 +372,19 @@ public class Credito {
         
     }
 
+    public void buscarCancelacionesPrestamo(){
+
+        System.out.println("ingrese id prestamo");
+        int prestamoId = Teclado.nextInt();
+        Teclado.nextLine();
+
+        BigDecimal total = ABMCancelacion.sumaCancel(prestamoId);
+
+        System.out.println(total);
+
+
+    }
+
     
 
     public static void printOpciones() {
@@ -382,7 +397,7 @@ public class Credito {
         System.out.println("5. Buscar un cliente por nombre especifico(SQL Injection)).");
         System.out.println("6. Otorgar un prestamo (cliente Id).");
         System.out.println("7. Ver lista de prestamos");
-        System.out.println("8. Total de prestamo por cliente");
+        System.out.println("8. Cancelacion");
         System.out.println("0. Para terminar.");
         System.out.println("");
         System.out.println("=======================================");

@@ -99,4 +99,17 @@ public class CancelacionManager {
                 "select (select count(*) from cliente) as cant_clientes, (select count(*) from prestamo) as cant_prestamos",
                 ReporteCantClientePrestamos.class);*/
 
+
+    public BigDecimal sumaCancel(int prestamoId){
+
+        Session session = sessionFactory.openSession();
+        Query query = session.createNativeQuery("select SUM(importe) from cancelacion where prestamo_id= ?");
+        query.setParameter(1, prestamoId);
+        double resultado =((Number)query.getSingleResult()).doubleValue();
+        BigDecimal suma = new BigDecimal(resultado);
+        session.close();
+
+        return suma;
+
+    }
 }
